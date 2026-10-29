@@ -2,15 +2,18 @@ Because I'm afraid of somgthing wrong about the encoding-ways such as UTF-8 and 
 
 It's the first time for me to write `README.md` in English, haha  
 
-# Description of files here
+# My dotfiles
+
+## Description of files here
+```text
 .  
 ├── README.md                     something like introduction  
 ├── install.sh  
 └── terminal  
     └── .zshrc                    from ~/.zshrc  
+```
 
-
-# Introduction to the file `install.sh`  
+## Introduction to the file `install.sh`  
 
 > Because I'm not familiar with the grammer of <.sh> files, I use AI (actually DeepSeek) to help me to write this script.
 
@@ -23,7 +26,7 @@ It's the first time for me to write `README.md` in English, haha
 - The script will install Zsh Plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` from Gitee, because I suppose they are necessary for me. (Gitee for the problem of network fluctuation, maybe. I also forget the reason why I chose Gitee at first.)
 - The script will link the files `~/.zshrc`
 
-# How to use it
+## How to use it
 
 ```bash
 cd     
