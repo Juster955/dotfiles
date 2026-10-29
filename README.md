@@ -17,13 +17,13 @@ It's the first time for me to write `README.md` in English, haha
 
 > Because I'm not familiar with the grammer of <.sh> files, I use AI (actually DeepSeek) to help me to write this script.
 
-(When the script is trying to execute commend `ln`, if there have been a file in the destination, the script will rename it as `{originalName}.bak`. And the script will always execute the commend `ln` with the flag of <-sf>.)  
+(When the script is trying to execute commend `ln`, if there have been a file in the destination, the script will rename it as `{originalName}.bak`. And the script will always execute the commend `ln` with the flag of `-sf`.)  
 (The script is written mainly for the scene that I am trying to use a new cloud server.)  
 
 - The script will ask the users whether to use a customised hostname in the prompt. (Won't change the real hostname.) Because I don't like the default hostname of the cloud machine which I get from the cloud company
 - The script will `sudo apt update` and then `sudo apt install -y zsh neofetch tree build-essentail gdb p7zip-full curl git wget`, because I think they are necessary for me. 
 - The script will install `Oh My Zsh` from GitHub, because I like it.
-- The script will install Zsh Plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` from Gitee, because I suppose they are necessary for me. (Gitee for the problem of network fluctuation, maybe. I also forget the reason why I chose Gitee at first.)
+- The script will install zsh plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` from Gitee, because I suppose they are necessary for me. (Gitee for the problem of network fluctuation, maybe. I also forget the reason why I chose Gitee at first.)
 - The script will link the files `~/.zshrc`
 
 ## How to use it
