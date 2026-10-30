@@ -29,21 +29,28 @@ safe_link() {
 # ======================================
 # 1. Hostname Customization (Interactive)
 # ======================================
-read -p "Do you want to customize the prompt hostname? (y/N): " DO_CUSTOM
-if [[ "$DO_CUSTOM" =~ ^[Yy]$ ]]; then
-    read -p "Enter the hostname you want to display: " CUSTOM_HOST
-    
-    > "$HOME/.zshrc.local"
-    cat <<EOF >> "$HOME/.zshrc.local"
+if [ -f "$HOME/.zshrc.local" ]; then
+    echo "~/.zshrc.local already exists, skipping hostname customization."
+else
+    read -p "Do you want to customize the prompt hostname? (y/N): " DO_CUSTOM
+    if [[ "$DO_CUSTOM" =~ ^[Yy]$ ]]; then
+        read -p "Enter the hostname you want to display: " CUSTOM_HOST
+
+        if [ -z "$CUSTOM_HOST" ]; then
+            echo "Empty hostname, skipping customization."
+        else
+            cat > "$HOME/.zshrc.local" <<EOF
 prompt_context() {
   if [[ "\$USER" != "root" ]]; then
     prompt_segment black default "%(!.%{%F{yellow}%}.)\$USER@$CUSTOM_HOST"
   fi
 }
 EOF
-    echo "Prompt hostname customized to: $CUSTOM_HOST"
-else
-    echo "Skipping prompt hostname customization."
+            echo "Prompt hostname customized to: $CUSTOM_HOST"
+        fi
+    else
+        echo "Skipping prompt hostname customization."
+    fi
 fi
 
 # ======================================
@@ -84,6 +91,57 @@ echo "======================================"
 echo "Deploying configurations..."
 
 safe_link "$DOTFILES_DIR/terminal/.zshrc" "$HOME/.zshrc"
+
+# ======================================
+# 6. Deploy .gitconfig
+# ======================================
+echo "======================================"
+echo "Deploying .gitconfig..."
+
+# Grab identity the machine already has (e.g. hand-written ~/.gitconfig).
+# Use --file so include is NOT expanded: we want the raw file, not our template.
+EXISTING_NAME=""
+EXISTING_EMAIL=""
+if [ -f "$HOME/.gitconfig" ]; then
+    EXISTING_NAME="$(git config --file "$HOME/.gitconfig" user.name 2>/dev/null || true)"
+    EXISTING_EMAIL="$(git config --file "$HOME/.gitconfig" user.email 2>/dev/null || true)"
+fi
+
+safe_link "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig"
+
+if [ -f "$HOME/.gitconfig.local" ]; then
+    echo "~/.gitconfig.local already exists, skipping."
+else
+    echo "No ~/.gitconfig.local found, creating one."
+
+    if [ -n "$EXISTING_NAME" ]; then
+        read -p "Git user name [$EXISTING_NAME]: " GIT_NAME
+        GIT_NAME="${GIT_NAME:-$EXISTING_NAME}"
+    else
+        while [ -z "$GIT_NAME" ]; do
+            read -p "Git user name: " GIT_NAME
+        done
+    fi
+
+    if [ -n "$EXISTING_EMAIL" ]; then
+        read -p "Git email [$EXISTING_EMAIL]: " GIT_EMAIL
+        GIT_EMAIL="${GIT_EMAIL:-$EXISTING_EMAIL}"
+    else
+        while [ -z "$GIT_EMAIL" ]; do
+            read -p "Git email: " GIT_EMAIL
+        done
+    fi
+
+    cat > "$HOME/.gitconfig.local" <<EOF
+[user]
+	name = $GIT_NAME
+	email = $GIT_EMAIL
+EOF
+
+    echo "Created ~/.gitconfig.local:"
+    cat "$HOME/.gitconfig.local"
+    echo "Note: this file is NOT tracked by git."
+fi
 
 echo "======================================"
 echo "Setup Complete! Please run: source ~/.zshrc"

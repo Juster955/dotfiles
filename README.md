@@ -8,6 +8,8 @@ It's the first time for me to write `README.md` in English, haha
 ```text
 .  
 ├── README.md                     something like introduction  
+├── git  
+│   └── .gitconfig                from ~/.gitconfig
 ├── install.sh  
 └── terminal  
     └── .zshrc                    from ~/.zshrc  
@@ -21,12 +23,14 @@ It's the first time for me to write `README.md` in English, haha
 (The script is written mainly for the scene that I am trying to use a new cloud server.)  
 
 - The script will ask the users whether to use a customised hostname in the prompt. (Won't change the real hostname.) Because I don't like the default hostname of the cloud machine which I get from the cloud company
-- The script will `sudo apt update` and then `sudo apt install -y zsh neofetch tree build-essentail gdb p7zip-full curl git wget`, because I think they are necessary for me. 
+- The script will `sudo apt update` and then `sudo apt install -y zsh neofetch tree build-essential gdb p7zip-full curl git wget`, because I think they are necessary for me. 
 - The script will install `Oh My Zsh` from GitHub, because I like it.
 - The script will install zsh plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` from Gitee, because I suppose they are necessary for me. (Gitee for the problem of network fluctuation, maybe. I also forget the reason why I chose Gitee at first.)
-- The script will link the files `~/.zshrc`
+- The script will ask about your name and email and write them into the file `~/.gitconfig.local`, which won't be tracked by dotfiles, if the script don't find the existed name and email in the machine. And then the script will link the file `~/.gitconfig`, whilch will include `~/.gitconfig.local`.  
+- The script will link the file `~/.zshrc`
 
 ## How to use it
+
 ### A new machine
 ```bash
 cd     
@@ -40,6 +44,7 @@ git clone https://github.com/Juster955/dotfiles.git
 ./dotfiles/install.sh
     # execute the <install.sh>
 ```
+
 ### Change something in my main PC
 - if change the content of dotfiles：
   - `vim` to change the file in `~/dotfiles`
