@@ -28,6 +28,7 @@ It's the first time for me to write `README.md` in English, haha
 - The script will install zsh plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` from Gitee, because I suppose they are necessary for me. (Gitee for the problem of network fluctuation, maybe. I also forget the reason why I chose Gitee at first.) (update: Yes, it's necessary for my machine)
 - The script will ask about your name and email and write them into the file `~/.gitconfig.local`, which won't be tracked by dotfiles, if the script don't find the existed name and email in the machine. And then the script will link the file `~/.gitconfig`, whilch will include `~/.gitconfig.local`.  
 - The script will link the file `~/.zshrc`
+- The script will try to change the default shell to zsh, which may need you to type your password
 
 ## How to use it
 

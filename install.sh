@@ -143,6 +143,27 @@ EOF
     echo "Note: this file is NOT tracked by git."
 fi
 
+# ======================================
+# 7. Change default shell to zsh
+# ======================================
+ZSH_BIN="$(command -v zsh || true)"
+CURRENT_LOGIN_SHELL="$(getent passwd "$USER" | cut -d: -f7)"
+
+if [ -z "$ZSH_BIN" ]; then
+    echo "zsh not found, skipping default shell change."
+elif [ "$CURRENT_LOGIN_SHELL" = "$ZSH_BIN" ]; then
+    echo "Default shell is already zsh, skipping."
+else
+    echo "Changing default shell to zsh..."
+    echo "You will be asked for your password."
+    echo "chsh must authenticate via PAM before it can modify your entry in /etc/passwd,"
+    echo "even though you are only changing your own login shell."
+    if ! chsh -s "$ZSH_BIN"; then
+        echo "Warning: chsh failed. You can change the shell manually later with:"
+        echo "    chsh -s $ZSH_BIN"
+    fi
+fi
+
 echo "======================================"
 echo "Setup Complete! Please run: source ~/.zshrc"
 echo "======================================"
