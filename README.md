@@ -24,8 +24,8 @@ It's the first time for me to write `README.md` in English, haha
 
 - The script will ask the users whether to use a customised hostname in the prompt. (Won't change the real hostname.) Because I don't like the default hostname of the cloud machine which I get from the cloud company
 - The script will `sudo apt update` and then `sudo apt install -y zsh neofetch tree build-essential gdb p7zip-full curl git wget`, because I think they are necessary for me. 
-- The script will install `Oh My Zsh` from GitHub, because I like it.
-- The script will install zsh plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` from Gitee, because I suppose they are necessary for me. (Gitee for the problem of network fluctuation, maybe. I also forget the reason why I chose Gitee at first.)
+- The script will install `Oh My Zsh` from Gitee, because I like it. (Gitee for the problem of network fluctuation. At first I tried GitHub, but it failed in my Alibaba Cloud Server)
+- The script will install zsh plugins `zsh-autosuggestions` and `zsh-syntax-highlighting` from Gitee, because I suppose they are necessary for me. (Gitee for the problem of network fluctuation, maybe. I also forget the reason why I chose Gitee at first.) (update: Yes, it's necessary for my machine)
 - The script will ask about your name and email and write them into the file `~/.gitconfig.local`, which won't be tracked by dotfiles, if the script don't find the existed name and email in the machine. And then the script will link the file `~/.gitconfig`, whilch will include `~/.gitconfig.local`.  
 - The script will link the file `~/.zshrc`
 
