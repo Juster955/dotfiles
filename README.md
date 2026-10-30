@@ -27,7 +27,7 @@ It's the first time for me to write `README.md` in English, haha
 - The script will link the files `~/.zshrc`
 
 ## How to use it
-
+### A new machine
 ```bash
 cd     
     # I like to put the director <dotfiles> in home.
@@ -40,3 +40,19 @@ git clone https://github.com/Juster955/dotfiles.git
 ./dotfiles/install.sh
     # execute the <install.sh>
 ```
+### Change something in my main PC
+- if change the content of dotfiles：
+  - `vim` to change the file in `~/dotfiles`
+- if download new softwares:
+  - change the `install.sh`
+- if add new dotfiles
+  - `mv` to the director of `~/dotfiles`
+  - `ln` to the original place
+  - change the deploy part in the tail of `install.sh`
+  - `git commit` and `push`
+> remember to check if there are private contents before `git add`
+
+### Update dotfiles in new machines
+`git pull origin main`
+`cd`
+`./dotfiles/install.sh`
