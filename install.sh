@@ -67,8 +67,8 @@ sudo apt install -y zsh neofetch tree build-essential gdb p7zip-full curl git wg
 # 3. Install Oh My Zsh (Silent mode)
 # ======================================
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "Installing Oh My Zsh..."
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    echo "Installing Oh My Zsh (Gitee mirror)..."
+    git clone --depth=1 https://gitee.com/mirrors/oh-my-zsh.git "$HOME/.oh-my-zsh"
 fi
 
 # ======================================
